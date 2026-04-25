@@ -1,65 +1,141 @@
-import Image from "next/image";
+import Link from "next/link";
+import { Reveal } from "@/components/Reveal";
+import { TiltCard } from "@/components/premium/TiltCard";
+import { Sparkles } from "@/components/premium/Sparkles";
+import { BackgroundBeams } from "@/components/premium/BackgroundBeams";
+import { TextGenerate } from "@/components/premium/TextGenerate";
+import { GradientText } from "@/components/premium/GradientText";
+import { ShimmerButton } from "@/components/premium/ShimmerButton";
+import {
+  Droplets, Scissors, Wrench, UtensilsCrossed, Scale, ShoppingBag, Trees, ArrowRight,
+} from "lucide-react";
+
+const demos = [
+  { href: "/plumber",      name: "Plumber / Trades",        tag: "Service business",        starts: "R3,500",  blurb: "Spotlight hero, trust bar, urgency CTA — built to convert emergency callers.",  Icon: Droplets,        grad: "from-indigo-500 via-violet-600 to-fuchsia-600" },
+  { href: "/salon",        name: "Salon / Spa / Barber",    tag: "Luxe service",            starts: "R4,500",  blurb: "Editorial typography, soft palette, WhatsApp-to-book. Premium feel for luxe trades.",  Icon: Scissors,         grad: "from-rose-400 via-stone-300 to-amber-300" },
+  { href: "/mechanic",     name: "Mechanic / Auto",         tag: "Automotive",              starts: "R5,000",  blurb: "Industrial dark theme, upfront pricing, photo-report workflow. Trust = bookings.",       Icon: Wrench,           grad: "from-amber-500 via-orange-600 to-rose-700" },
+  { href: "/restaurant",   name: "Restaurant + Ordering",   tag: "Food / hospitality",      starts: "R5,500+", blurb: "Click-to-WhatsApp ordering. Menu, fire, conversion — no cart needed.",                  Icon: UtensilsCrossed, grad: "from-orange-700 via-rose-700 to-amber-600" },
+  { href: "/professional", name: "Lawyer / Doctor / Accountant", tag: "Premium professional", starts: "R6,500", blurb: "Editorial gravitas, practice areas, senior-team showcase. Pricing follows perception.",  Icon: Scale,            grad: "from-emerald-700 via-stone-700 to-amber-800" },
+  { href: "/shop",         name: "Boutique Ecommerce",      tag: "WooCommerce",             starts: "R9,500+", blurb: "Bento grid, hover-tilt cards, animated marquee. One visual ceiling, three feature tiers.", Icon: ShoppingBag,      grad: "from-rose-600 via-fuchsia-700 to-amber-500" },
+  { href: "/guesthouse",   name: "Guesthouse / B&B",        tag: "Hospitality",             starts: "R7,500+", blurb: "Live booking widget, sparkles, magaliesberg-quiet luxury. Books direct, skips Booking.com fees.", Icon: Trees,        grad: "from-emerald-800 via-emerald-900 to-amber-700" },
+];
 
 export default function Home() {
   return (
-    <div className="flex flex-col flex-1 items-center justify-center bg-zinc-50 font-sans dark:bg-black">
-      <main className="flex flex-1 w-full max-w-3xl flex-col items-center justify-between py-32 px-16 bg-white dark:bg-black sm:items-start">
-        <Image
-          className="dark:invert"
-          src="/next.svg"
-          alt="Next.js logo"
-          width={100}
-          height={20}
-          priority
-        />
-        <div className="flex flex-col items-center gap-6 text-center sm:items-start sm:text-left">
-          <h1 className="max-w-xs text-3xl font-semibold leading-10 tracking-tight text-black dark:text-zinc-50">
-            To get started, edit the page.tsx file.
-          </h1>
-          <p className="max-w-md text-lg leading-8 text-zinc-600 dark:text-zinc-400">
-            Looking for a starting point or more instructions? Head over to{" "}
-            <a
-              href="https://vercel.com/templates?framework=next.js&utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-              className="font-medium text-zinc-950 dark:text-zinc-50"
-            >
-              Templates
-            </a>{" "}
-            or the{" "}
-            <a
-              href="https://nextjs.org/learn?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-              className="font-medium text-zinc-950 dark:text-zinc-50"
-            >
-              Learning
-            </a>{" "}
-            center.
+    <main className="min-h-screen bg-stone-950 text-stone-100">
+      {/* HERO */}
+      <section className="relative overflow-hidden min-h-[80vh] flex flex-col items-center justify-center px-6 lg:px-12 py-20 text-center">
+        <Sparkles count={120} className="absolute inset-0 w-full h-full" />
+        <BackgroundBeams count={10} />
+        <div className="absolute -top-1/3 left-1/2 -translate-x-1/2 size-[110vw] rounded-full bg-indigo-500/20 blur-3xl" />
+        <div className="absolute bottom-0 left-1/2 -translate-x-1/2 size-[80vw] rounded-full bg-rose-500/15 blur-3xl" />
+
+        <Reveal>
+          <span className="inline-flex items-center gap-2 rounded-full border border-stone-700 bg-stone-900/60 backdrop-blur px-4 py-1.5 text-xs uppercase tracking-[0.3em] text-stone-300 mb-7">
+            ✦ Live demos · By Makeenology
+          </span>
+        </Reveal>
+
+        <h1 className="relative font-serif text-5xl md:text-7xl lg:text-8xl font-light leading-[0.95] tracking-tight max-w-5xl">
+          <TextGenerate words="Pick a vertical." className="block" />
+          <GradientText from="from-rose-400" via="via-fuchsia-400" to="to-amber-300" className="font-normal italic">
+            <TextGenerate words="See your future." />
+          </GradientText>
+        </h1>
+
+        <Reveal delay={0.6}>
+          <p className="text-lg md:text-xl text-stone-400 mt-7 max-w-2xl">
+            Seven live sample sites covering the niches we build for. Click any one — the design quality you see
+            is the floor, not the ceiling.
           </p>
+        </Reveal>
+
+        <Reveal delay={0.8}>
+          <div className="mt-10 flex flex-col sm:flex-row gap-3 justify-center">
+            <ShimmerButton href="#demos" background="linear-gradient(110deg,#1e1b4b,#3730a3)">
+              Browse demos <ArrowRight className="size-4" />
+            </ShimmerButton>
+            <a href="https://makeenology.org" target="_blank" rel="noopener noreferrer"
+               className="inline-flex items-center justify-center gap-2 rounded-full border border-stone-700 px-7 py-3.5 text-sm hover:bg-stone-800 transition">
+              About Makeenology
+            </a>
+          </div>
+        </Reveal>
+      </section>
+
+      {/* GRID */}
+      <section id="demos" className="relative py-20 px-6 lg:px-12">
+        <div className="max-w-7xl mx-auto">
+          <Reveal>
+            <div className="flex items-end justify-between mb-12 flex-wrap gap-4">
+              <div>
+                <span className="uppercase text-xs tracking-[0.3em] text-rose-400 font-medium">The demos</span>
+                <h2 className="font-serif text-4xl md:text-5xl font-light mt-2">
+                  Seven verticals. <em className="text-rose-400">One visual ceiling.</em>
+                </h2>
+              </div>
+              <p className="text-stone-400 text-sm max-w-md">
+                Built with shadcn, Aceternity, Magic UI, Framer Motion. Reskinned for any niche you bring us.
+              </p>
+            </div>
+          </Reveal>
+
+          <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-5">
+            {demos.map((d, i) => (
+              <Reveal key={d.href} delay={i * 0.06}>
+                <Link href={d.href} className="block group">
+                  <TiltCard className="rounded-3xl overflow-hidden border border-stone-800 bg-stone-900 hover:border-stone-600 transition">
+                    <div className={`relative aspect-[5/3] bg-gradient-to-br ${d.grad}`}>
+                      <div className="absolute inset-0 bg-grid opacity-20 mix-blend-overlay" />
+                      <div className="absolute inset-0 grid place-items-center">
+                        <d.Icon className="size-16 text-white/80" strokeWidth={1.2} />
+                      </div>
+                      <span className="absolute top-4 left-4 bg-stone-950/70 backdrop-blur text-stone-100 text-[10px] uppercase tracking-[0.25em] px-2.5 py-1 rounded-full">
+                        {d.tag}
+                      </span>
+                      <span className="absolute top-4 right-4 bg-white/90 backdrop-blur text-stone-900 text-xs font-mono px-2.5 py-1 rounded-full">
+                        {d.starts}
+                      </span>
+                    </div>
+                    <div className="p-6">
+                      <h3 className="font-serif text-2xl mb-2 group-hover:text-rose-400 transition">{d.name}</h3>
+                      <p className="text-sm text-stone-400 leading-relaxed mb-5">{d.blurb}</p>
+                      <span className="inline-flex items-center gap-1 text-sm text-rose-400 group-hover:gap-2 transition-all">
+                        View demo <ArrowRight className="size-4" />
+                      </span>
+                    </div>
+                  </TiltCard>
+                </Link>
+              </Reveal>
+            ))}
+          </div>
         </div>
-        <div className="flex flex-col gap-4 text-base font-medium sm:flex-row">
-          <a
-            className="flex h-12 w-full items-center justify-center gap-2 rounded-full bg-foreground px-5 text-background transition-colors hover:bg-[#383838] dark:hover:bg-[#ccc] md:w-[158px]"
-            href="https://vercel.com/new?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            <Image
-              className="dark:invert"
-              src="/vercel.svg"
-              alt="Vercel logomark"
-              width={16}
-              height={16}
-            />
-            Deploy Now
-          </a>
-          <a
-            className="flex h-12 w-full items-center justify-center rounded-full border border-solid border-black/[.08] px-5 transition-colors hover:border-transparent hover:bg-black/[.04] dark:border-white/[.145] dark:hover:bg-[#1a1a1a] md:w-[158px]"
-            href="https://nextjs.org/docs?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            Documentation
-          </a>
+      </section>
+
+      {/* CTA */}
+      <section className="py-24 px-6 lg:px-12 bg-gradient-to-br from-rose-900 via-stone-900 to-emerald-900 text-stone-100 text-center relative overflow-hidden">
+        <Sparkles count={40} className="absolute inset-0 w-full h-full opacity-50" />
+        <div className="relative z-10 max-w-3xl mx-auto">
+          <Reveal>
+            <h2 className="font-serif text-4xl md:text-6xl font-light mb-5">
+              Ready to <GradientText from="from-amber-300" via="via-rose-300" to="to-fuchsia-300">build yours?</GradientText>
+            </h2>
+            <p className="text-stone-300 mb-10 text-lg">
+              Pick the demo closest to your business. We'll customise, brand it, launch in 5–10 working days.
+            </p>
+            <ShimmerButton href="https://wa.me/27000000000" background="linear-gradient(110deg,#22c55e,#10b981)">
+              Start a conversation
+            </ShimmerButton>
+          </Reveal>
         </div>
-      </main>
-    </div>
+      </section>
+
+      <footer className="bg-stone-950 text-stone-500 py-10 px-6 lg:px-12 border-t border-stone-900">
+        <div className="max-w-7xl mx-auto flex flex-col md:flex-row justify-between items-center gap-4 text-sm">
+          <div className="font-serif italic text-stone-300">Makeenology · Demo Hub</div>
+          <div>© {new Date().getFullYear()} · All sample brands are fictional</div>
+        </div>
+      </footer>
+    </main>
   );
 }
