@@ -3,6 +3,7 @@ import { Reveal } from "@/components/Reveal";
 import { Marquee } from "@/components/Marquee";
 import { StickyCTA } from "@/components/StickyCTA";
 import { DemoBanner } from "@/components/DemoBanner";
+import { IMG } from "@/lib/images";
 import { CheckCircle2, Phone, ShieldCheck, Wrench, Droplets, Flame, Hammer, Star, Clock, MapPin, ArrowRight } from "lucide-react";
 
 const BRAND = "AquaForce Plumbing";
@@ -10,10 +11,10 @@ const PHONE = "+27 81 234 5678";
 const SLOGAN = "24/7 emergency plumbers — Lenasia, Soweto & South JHB.";
 
 const services = [
-  { icon: Droplets, title: "Burst pipes & leaks", desc: "Same-hour response. We pinpoint and fix without ripping up your floors." },
-  { icon: Flame, title: "Geyser repair & install", desc: "Solar, electric, gas. SABS-approved units with 5-year warranty." },
-  { icon: Wrench, title: "Drain unblocking", desc: "High-pressure jetting. We clear it or you don't pay — guaranteed." },
-  { icon: Hammer, title: "Bathroom renovations", desc: "Full strip-and-redo. From R28k turnkey, finished in 5–7 days." },
+  { icon: Droplets, title: "Burst pipes & leaks", desc: "Same-hour response. We pinpoint and fix without ripping up your floors.", img: IMG.plumber.services[0] },
+  { icon: Flame, title: "Geyser repair & install", desc: "Solar, electric, gas. SABS-approved units with 5-year warranty.", img: IMG.plumber.services[1] },
+  { icon: Wrench, title: "Drain unblocking", desc: "High-pressure jetting. We clear it or you don't pay — guaranteed.", img: IMG.plumber.services[2] },
+  { icon: Hammer, title: "Bathroom renovations", desc: "Full strip-and-redo. From R28k turnkey, finished in 5–7 days.", img: IMG.plumber.services[3] },
 ];
 
 const testimonials = [
@@ -38,7 +39,9 @@ export default function PlumberDemo() {
       <StickyCTA phone={PHONE} name={BRAND} />
 
       {/* HERO */}
-      <SpotlightHero accent="indigo" className="min-h-[88vh] flex flex-col">
+      <SpotlightHero accent="indigo" className="min-h-[88vh] flex flex-col relative">
+        {/* eslint-disable-next-line @next/next/no-img-element */}
+        <img src={IMG.plumber.hero} alt="" className="absolute inset-0 w-full h-full object-cover opacity-15 pointer-events-none" />
         <header className="px-6 lg:px-12 py-5 flex items-center justify-between">
           <div className="flex items-center gap-2 font-bold text-lg">
             <Droplets className="size-6 text-indigo-600" />
@@ -115,13 +118,19 @@ export default function PlumberDemo() {
           <div className="grid md:grid-cols-2 gap-5">
             {services.map((s, i) => (
               <Reveal key={s.title} delay={i * 0.08}>
-                <div className="group relative h-full rounded-2xl border border-slate-200 bg-white p-7 hover:border-indigo-300 hover:shadow-xl hover:shadow-indigo-500/10 transition">
-                  <div className="absolute inset-x-0 top-0 h-px bg-gradient-to-r from-transparent via-indigo-500/40 to-transparent opacity-0 group-hover:opacity-100 transition" />
-                  <div className="size-12 rounded-xl bg-indigo-50 text-indigo-600 grid place-items-center mb-4">
-                    <s.icon className="size-6" />
+                <div className="group relative h-full rounded-2xl border border-slate-200 bg-white overflow-hidden hover:border-indigo-300 hover:shadow-xl hover:shadow-indigo-500/10 transition">
+                  <div className="relative aspect-[16/9] overflow-hidden bg-indigo-100">
+                    {/* eslint-disable-next-line @next/next/no-img-element */}
+                    <img src={s.img} alt={s.title} className="w-full h-full object-cover group-hover:scale-105 transition duration-700" />
+                    <div className="absolute inset-0 bg-gradient-to-t from-white/40 to-transparent" />
+                    <div className="absolute top-3 left-3 size-10 rounded-xl bg-white/95 backdrop-blur text-indigo-600 grid place-items-center shadow-sm">
+                      <s.icon className="size-5" />
+                    </div>
                   </div>
-                  <h3 className="text-xl font-semibold mb-2">{s.title}</h3>
-                  <p className="text-slate-600">{s.desc}</p>
+                  <div className="p-6">
+                    <h3 className="text-xl font-semibold mb-2">{s.title}</h3>
+                    <p className="text-slate-600">{s.desc}</p>
+                  </div>
                 </div>
               </Reveal>
             ))}

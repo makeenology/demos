@@ -7,15 +7,16 @@ import { ShimmerButton } from "@/components/premium/ShimmerButton";
 import { TextGenerate } from "@/components/premium/TextGenerate";
 import { Sparkles } from "@/components/premium/Sparkles";
 import { GradientText } from "@/components/premium/GradientText";
+import { IMG } from "@/lib/images";
 import { Bed, Wifi, Coffee, Waves, MapPin, Calendar, Star, ArrowRight, Trees, Wind, Users } from "lucide-react";
 
 const BRAND = "Acacia House";
 const PHONE = "+27 11 990 4421";
 
 const rooms = [
-  { name: "Garden Suite", from: "R1,450", desc: "King bed · garden view · private patio · sleeps 2", grad: "from-emerald-200 via-amber-100 to-rose-100" },
-  { name: "Loft Studio", from: "R1,180", desc: "Queen bed · skylight · kitchenette · sleeps 2", grad: "from-amber-200 via-stone-100 to-emerald-100" },
-  { name: "Family Cottage", from: "R2,200", desc: "2 bedrooms · lounge · braai · sleeps 5", grad: "from-stone-200 via-rose-100 to-amber-100" },
+  { name: "Garden Suite", from: "R1,450", desc: "King bed · garden view · private patio · sleeps 2", img: IMG.guesthouse.rooms[0] },
+  { name: "Loft Studio", from: "R1,180", desc: "Queen bed · skylight · kitchenette · sleeps 2", img: IMG.guesthouse.rooms[1] },
+  { name: "Family Cottage", from: "R2,200", desc: "2 bedrooms · lounge · braai · sleeps 5", img: IMG.guesthouse.rooms[2] },
 ];
 
 export default function GuesthouseDemo() {
@@ -27,6 +28,9 @@ export default function GuesthouseDemo() {
       {/* HERO */}
       <section className="relative overflow-hidden min-h-[95vh] flex flex-col">
         <div className="absolute inset-0 bg-gradient-to-br from-emerald-900 via-stone-800 to-amber-900" />
+        {/* eslint-disable-next-line @next/next/no-img-element */}
+        <img src={IMG.guesthouse.landscape} alt="" className="absolute inset-0 w-full h-full object-cover opacity-40" />
+        <div className="absolute inset-0 bg-gradient-to-b from-stone-900/40 via-stone-900/30 to-stone-900/70" />
         <Sparkles count={50} className="absolute inset-0 w-full h-full opacity-50" />
         <div className="absolute inset-0 bg-grid opacity-10" />
         <div className="absolute -top-1/3 left-1/2 -translate-x-1/2 size-[100vw] rounded-full bg-amber-500/15 blur-3xl" />
@@ -137,10 +141,11 @@ export default function GuesthouseDemo() {
             {rooms.map((r, i) => (
               <Reveal key={r.name} delay={i * 0.08}>
                 <TiltCard className="rounded-3xl overflow-hidden bg-white border border-stone-200 group">
-                  <div className={`relative aspect-[4/3] bg-gradient-to-br ${r.grad}`}>
-                    <div className="absolute inset-0 bg-grid opacity-20 mix-blend-overlay" />
-                    <div className="absolute inset-6 border border-white/40 grid place-items-center">
-                      <Bed className="size-14 text-white/60" strokeWidth={1} />
+                  <div className="relative aspect-[4/3] overflow-hidden">
+                    {/* eslint-disable-next-line @next/next/no-img-element */}
+                    <img src={r.img} alt={r.name} className="absolute inset-0 w-full h-full object-cover group-hover:scale-105 transition duration-700" />
+                    <div className="absolute top-3 left-3 size-10 rounded-full bg-white/95 backdrop-blur grid place-items-center">
+                      <Bed className="size-5 text-emerald-700" />
                     </div>
                   </div>
                   <div className="p-6">
@@ -195,11 +200,10 @@ export default function GuesthouseDemo() {
           </Reveal>
           <Reveal delay={0.2}>
             <TiltCard className="aspect-[4/5] rounded-3xl overflow-hidden">
-              <div className="relative h-full bg-gradient-to-br from-emerald-700 via-emerald-800 to-stone-800">
-                <div className="absolute inset-0 bg-grid opacity-15" />
-                <div className="absolute inset-0 grid place-items-center">
-                  <Trees className="size-32 text-emerald-300/40" strokeWidth={0.7} />
-                </div>
+              <div className="relative h-full">
+                {/* eslint-disable-next-line @next/next/no-img-element */}
+                <img src={IMG.guesthouse.interior} alt="" className="absolute inset-0 w-full h-full object-cover" />
+                <div className="absolute inset-0 bg-gradient-to-t from-emerald-900/60 via-transparent to-transparent" />
                 <div className="absolute bottom-6 left-6 right-6 bg-white/95 p-5 rounded-2xl backdrop-blur">
                   <div className="flex items-center gap-1 text-amber-500 mb-2">
                     {Array.from({ length: 5 }).map((_, i) => <Star key={i} className="size-3.5 fill-amber-500" />)}

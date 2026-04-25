@@ -6,18 +6,19 @@ import { BackgroundBeams } from "@/components/premium/BackgroundBeams";
 import { TextGenerate } from "@/components/premium/TextGenerate";
 import { GradientText } from "@/components/premium/GradientText";
 import { ShimmerButton } from "@/components/premium/ShimmerButton";
+import { IMG } from "@/lib/images";
 import {
   Droplets, Scissors, Wrench, UtensilsCrossed, Scale, ShoppingBag, Trees, ArrowRight,
 } from "lucide-react";
 
 const demos = [
-  { href: "/plumber",      name: "Plumber / Trades",        tag: "Service business",        starts: "R3,500",  blurb: "Spotlight hero, trust bar, urgency CTA — built to convert emergency callers.",  Icon: Droplets,        grad: "from-indigo-500 via-violet-600 to-fuchsia-600" },
-  { href: "/salon",        name: "Salon / Spa / Barber",    tag: "Luxe service",            starts: "R4,500",  blurb: "Editorial typography, soft palette, WhatsApp-to-book. Premium feel for luxe trades.",  Icon: Scissors,         grad: "from-rose-400 via-stone-300 to-amber-300" },
-  { href: "/mechanic",     name: "Mechanic / Auto",         tag: "Automotive",              starts: "R5,000",  blurb: "Industrial dark theme, upfront pricing, photo-report workflow. Trust = bookings.",       Icon: Wrench,           grad: "from-amber-500 via-orange-600 to-rose-700" },
-  { href: "/restaurant",   name: "Restaurant + Ordering",   tag: "Food / hospitality",      starts: "R5,500+", blurb: "Click-to-WhatsApp ordering. Menu, fire, conversion — no cart needed.",                  Icon: UtensilsCrossed, grad: "from-orange-700 via-rose-700 to-amber-600" },
-  { href: "/professional", name: "Lawyer / Doctor / Accountant", tag: "Premium professional", starts: "R6,500", blurb: "Editorial gravitas, practice areas, senior-team showcase. Pricing follows perception.",  Icon: Scale,            grad: "from-emerald-700 via-stone-700 to-amber-800" },
-  { href: "/shop",         name: "Boutique Ecommerce",      tag: "WooCommerce",             starts: "R9,500+", blurb: "Bento grid, hover-tilt cards, animated marquee. One visual ceiling, three feature tiers.", Icon: ShoppingBag,      grad: "from-rose-600 via-fuchsia-700 to-amber-500" },
-  { href: "/guesthouse",   name: "Guesthouse / B&B",        tag: "Hospitality",             starts: "R7,500+", blurb: "Live booking widget, sparkles, magaliesberg-quiet luxury. Books direct, skips Booking.com fees.", Icon: Trees,        grad: "from-emerald-800 via-emerald-900 to-amber-700" },
+  { href: "/plumber",      name: "Plumber / Trades",        tag: "Service business",       blurb: "Spotlight hero, trust bar, urgency CTA — built to convert emergency callers.",  Icon: Droplets,        grad: "from-indigo-500 via-violet-600 to-fuchsia-600", img: IMG.cards.plumber },
+  { href: "/salon",        name: "Salon / Spa / Barber",    tag: "Luxe service",           blurb: "Editorial typography, soft palette, WhatsApp-to-book. Premium feel for luxe trades.",  Icon: Scissors,         grad: "from-rose-400 via-stone-300 to-amber-300", img: IMG.cards.salon },
+  { href: "/mechanic",     name: "Mechanic / Auto",         tag: "Automotive",             blurb: "Industrial dark theme, upfront pricing, photo-report workflow. Trust = bookings.",       Icon: Wrench,           grad: "from-amber-500 via-orange-600 to-rose-700", img: IMG.cards.mechanic },
+  { href: "/restaurant",   name: "Restaurant + Ordering",   tag: "Food / hospitality",     blurb: "Click-to-WhatsApp ordering. Menu, fire, conversion — no cart needed.",                  Icon: UtensilsCrossed, grad: "from-orange-700 via-rose-700 to-amber-600", img: IMG.cards.restaurant },
+  { href: "/professional", name: "Lawyer / Doctor / Accountant", tag: "Premium professional", blurb: "Editorial gravitas, practice areas, senior-team showcase. Pricing follows perception.",  Icon: Scale,            grad: "from-emerald-700 via-stone-700 to-amber-800", img: IMG.cards.professional },
+  { href: "/shop",         name: "Boutique Ecommerce",      tag: "WooCommerce",            blurb: "Bento grid, hover-tilt cards, animated marquee. One visual ceiling, three feature tiers.", Icon: ShoppingBag,      grad: "from-rose-600 via-fuchsia-700 to-amber-500", img: IMG.cards.shop },
+  { href: "/guesthouse",   name: "Guesthouse / B&B",        tag: "Hospitality",            blurb: "Live booking widget, sparkles, magaliesberg-quiet luxury. Books direct, skips Booking.com fees.", Icon: Trees,        grad: "from-emerald-800 via-emerald-900 to-amber-700", img: IMG.cards.guesthouse },
 ];
 
 export default function Home() {
@@ -86,15 +87,14 @@ export default function Home() {
                 <Link href={d.href} className="block group">
                   <TiltCard className="rounded-3xl overflow-hidden border border-stone-800 bg-stone-900 hover:border-stone-600 transition">
                     <div className={`relative aspect-[5/3] bg-gradient-to-br ${d.grad}`}>
-                      <div className="absolute inset-0 bg-grid opacity-20 mix-blend-overlay" />
-                      <div className="absolute inset-0 grid place-items-center">
-                        <d.Icon className="size-16 text-white/80" strokeWidth={1.2} />
+                      {/* eslint-disable-next-line @next/next/no-img-element */}
+                      <img src={d.img} alt={d.name} className="absolute inset-0 w-full h-full object-cover opacity-90 group-hover:opacity-100 group-hover:scale-105 transition duration-700" />
+                      <div className="absolute inset-0 bg-gradient-to-t from-stone-950 via-stone-950/30 to-transparent" />
+                      <div className="absolute bottom-3 left-4 inline-flex items-center gap-2 text-white/90">
+                        <d.Icon className="size-5" strokeWidth={1.5} />
                       </div>
                       <span className="absolute top-4 left-4 bg-stone-950/70 backdrop-blur text-stone-100 text-[10px] uppercase tracking-[0.25em] px-2.5 py-1 rounded-full">
                         {d.tag}
-                      </span>
-                      <span className="absolute top-4 right-4 bg-white/90 backdrop-blur text-stone-900 text-xs font-mono px-2.5 py-1 rounded-full">
-                        {d.starts}
                       </span>
                     </div>
                     <div className="p-6">

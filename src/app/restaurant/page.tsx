@@ -3,6 +3,7 @@ import { Reveal } from "@/components/Reveal";
 import { Marquee } from "@/components/Marquee";
 import { StickyCTA } from "@/components/StickyCTA";
 import { DemoBanner } from "@/components/DemoBanner";
+import { IMG } from "@/lib/images";
 import { UtensilsCrossed, Flame, MessageCircle, Phone, Clock, MapPin, Star, Plus } from "lucide-react";
 
 const BRAND = "Saffron & Smoke";
@@ -34,7 +35,9 @@ export default function RestaurantDemo() {
       <StickyCTA phone={PHONE} name={BRAND} />
 
       {/* HERO */}
-      <SpotlightHero accent="amber" className="min-h-[92vh] flex flex-col bg-[#1a0f0a]">
+      <SpotlightHero accent="amber" className="min-h-[92vh] flex flex-col bg-[#1a0f0a] relative">
+        {/* eslint-disable-next-line @next/next/no-img-element */}
+        <img src={IMG.restaurant.hero} alt="" className="absolute inset-0 w-full h-full object-cover opacity-30 pointer-events-none" />
         <header className="px-6 lg:px-12 py-5 flex items-center justify-between">
           <div className="flex items-center gap-2 font-serif italic text-2xl text-amber-200">
             <Flame className="size-5 text-orange-500" />
@@ -97,6 +100,20 @@ export default function RestaurantDemo() {
               <x.i className="size-5 text-orange-500" />
               <span className="text-sm text-amber-100/80">{x.t}</span>
             </div>
+          ))}
+        </div>
+      </section>
+
+      {/* GALLERY */}
+      <section className="py-12 px-6 lg:px-12 overflow-hidden">
+        <div className="max-w-7xl mx-auto grid grid-cols-3 md:grid-cols-6 lg:grid-cols-9 gap-2">
+          {IMG.restaurant.food.map((src, i) => (
+            <Reveal key={i} delay={i * 0.03}>
+              <div className="aspect-square overflow-hidden rounded-md">
+                {/* eslint-disable-next-line @next/next/no-img-element */}
+                <img src={src} alt="" className="w-full h-full object-cover hover:scale-110 transition duration-500" />
+              </div>
+            </Reveal>
           ))}
         </div>
       </section>

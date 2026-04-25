@@ -2,6 +2,7 @@ import { SpotlightHero } from "@/components/SpotlightHero";
 import { Reveal } from "@/components/Reveal";
 import { StickyCTA } from "@/components/StickyCTA";
 import { DemoBanner } from "@/components/DemoBanner";
+import { IMG } from "@/lib/images";
 import { Scale, ShieldCheck, FileCheck, Award, Phone, Calendar, Mail, MapPin, ArrowRight, BookOpen, Briefcase, Building2 } from "lucide-react";
 
 const BRAND = "Hayat & Partners";
@@ -77,11 +78,11 @@ export default function ProfessionalDemo() {
             </Reveal>
           </div>
           <Reveal delay={0.4} className="lg:col-span-5">
-            <div className="relative aspect-[4/5] bg-gradient-to-br from-emerald-100 via-stone-100 to-amber-50">
-              <div className="absolute inset-6 border border-emerald-700/20 grid place-items-center">
-                <Scale className="size-24 text-emerald-700/30" strokeWidth={1} />
-              </div>
-              <div className="absolute bottom-6 left-6 right-6 bg-white/90 backdrop-blur-sm border border-slate-200 p-5 text-center">
+            <div className="relative aspect-[4/5] overflow-hidden">
+              {/* eslint-disable-next-line @next/next/no-img-element */}
+              <img src={IMG.professional.interior} alt="" className="absolute inset-0 w-full h-full object-cover" />
+              <div className="absolute inset-0 bg-gradient-to-br from-emerald-900/30 via-transparent to-amber-900/20" />
+              <div className="absolute bottom-6 left-6 right-6 bg-white/95 backdrop-blur-sm border border-slate-200 p-5 text-center">
                 <div className="text-3xl font-serif text-emerald-700">22</div>
                 <div className="text-xs uppercase tracking-[0.2em] text-slate-600 mt-1">Years on the bar</div>
               </div>
@@ -130,13 +131,16 @@ export default function ProfessionalDemo() {
           <div className="grid md:grid-cols-3 gap-6">
             {team.map((m, i) => (
               <Reveal key={m.name} delay={i * 0.08}>
-                <div className="bg-white border border-slate-200 p-8 text-center">
-                  <div className="size-20 mx-auto mb-5 rounded-full bg-gradient-to-br from-emerald-200 to-amber-100 grid place-items-center">
-                    <span className="font-serif text-2xl text-emerald-800">{m.name.split(" ").map(w=>w[0]).join("")}</span>
+                <div className="bg-white border border-slate-200 overflow-hidden">
+                  <div className="aspect-[4/5] overflow-hidden">
+                    {/* eslint-disable-next-line @next/next/no-img-element */}
+                    <img src={IMG.professional.team[i]} alt={m.name} className="w-full h-full object-cover grayscale hover:grayscale-0 transition duration-500" />
                   </div>
-                  <h3 className="font-serif text-xl">{m.name}</h3>
-                  <div className="text-sm text-slate-500 italic">{m.role}</div>
-                  <div className="text-xs uppercase tracking-[0.2em] text-emerald-700 mt-3">{m.years} at the bar</div>
+                  <div className="p-6 text-center">
+                    <h3 className="font-serif text-xl">{m.name}</h3>
+                    <div className="text-sm text-slate-500 italic">{m.role}</div>
+                    <div className="text-xs uppercase tracking-[0.2em] text-emerald-700 mt-3">{m.years} at the bar</div>
+                  </div>
                 </div>
               </Reveal>
             ))}

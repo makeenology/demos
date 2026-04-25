@@ -3,18 +3,19 @@ import { Reveal } from "@/components/Reveal";
 import { Marquee } from "@/components/Marquee";
 import { StickyCTA } from "@/components/StickyCTA";
 import { DemoBanner } from "@/components/DemoBanner";
+import { IMG } from "@/lib/images";
 import { Wrench, Gauge, Battery, Disc, ShieldCheck, Clock, Phone, Star, MapPin, ArrowRight, Settings } from "lucide-react";
 
 const BRAND = "Iron & Oil Auto";
 const PHONE = "+27 73 444 1199";
 
 const services = [
-  { icon: Settings, title: "Major service", price: "from R1,950", desc: "Oil, filters, plugs, full diagnostic." },
-  { icon: Disc, title: "Brake & clutch", price: "from R1,400", desc: "Pads, discs, full replacements. OEM only." },
-  { icon: Battery, title: "Battery & electrical", price: "from R650", desc: "Test, replace, alternator diagnostics." },
-  { icon: Gauge, title: "Diagnostic scan", price: "R450", desc: "OBD2 scan, fault codes, written report." },
-  { icon: Wrench, title: "Suspension & shocks", price: "from R2,200", desc: "OE-grade, lifetime alignment included." },
-  { icon: ShieldCheck, title: "RWC roadworthy", price: "R650", desc: "Same-day, registered test centre." },
+  { icon: Settings, title: "Major service", price: "from R1,950", desc: "Oil, filters, plugs, full diagnostic.", img: IMG.mechanic.services[0] },
+  { icon: Disc, title: "Brake & clutch", price: "from R1,400", desc: "Pads, discs, full replacements. OEM only.", img: IMG.mechanic.services[1] },
+  { icon: Battery, title: "Battery & electrical", price: "from R650", desc: "Test, replace, alternator diagnostics.", img: IMG.mechanic.services[2] },
+  { icon: Gauge, title: "Diagnostic scan", price: "R450", desc: "OBD2 scan, fault codes, written report.", img: IMG.mechanic.services[3] },
+  { icon: Wrench, title: "Suspension & shocks", price: "from R2,200", desc: "OE-grade, lifetime alignment included.", img: IMG.mechanic.services[4] },
+  { icon: ShieldCheck, title: "RWC roadworthy", price: "R650", desc: "Same-day, registered test centre.", img: IMG.mechanic.services[5] },
 ];
 
 export default function MechanicDemo() {
@@ -24,7 +25,9 @@ export default function MechanicDemo() {
       <StickyCTA phone={PHONE} name={BRAND} />
 
       {/* HERO */}
-      <SpotlightHero accent="amber" className="min-h-[88vh] flex flex-col bg-zinc-950">
+      <SpotlightHero accent="amber" className="min-h-[88vh] flex flex-col bg-zinc-950 relative">
+        {/* eslint-disable-next-line @next/next/no-img-element */}
+        <img src={IMG.mechanic.hero} alt="" className="absolute inset-0 w-full h-full object-cover opacity-25 pointer-events-none" />
         <header className="px-6 lg:px-12 py-5 flex items-center justify-between">
           <div className="flex items-center gap-2 font-bold text-xl tracking-tight">
             <Wrench className="size-6 text-amber-500" />
@@ -101,11 +104,18 @@ export default function MechanicDemo() {
           <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-4">
             {services.map((s, i) => (
               <Reveal key={s.title} delay={i * 0.05}>
-                <div className="group relative h-full border border-zinc-800 bg-zinc-900/50 p-7 hover:border-amber-500 hover:bg-zinc-900 transition">
-                  <s.icon className="size-9 text-amber-500 mb-5" strokeWidth={1.5} />
-                  <h3 className="text-xl font-bold mb-1 uppercase tracking-tight">{s.title}</h3>
-                  <div className="text-amber-500 font-mono text-sm mb-3">{s.price}</div>
-                  <p className="text-zinc-400 text-sm">{s.desc}</p>
+                <div className="group relative h-full border border-zinc-800 bg-zinc-900/50 hover:border-amber-500 hover:bg-zinc-900 transition overflow-hidden">
+                  <div className="relative aspect-[16/10] overflow-hidden">
+                    {/* eslint-disable-next-line @next/next/no-img-element */}
+                    <img src={s.img} alt={s.title} className="w-full h-full object-cover opacity-70 group-hover:opacity-100 group-hover:scale-105 transition duration-700" />
+                    <div className="absolute inset-0 bg-gradient-to-t from-zinc-950 via-zinc-950/40 to-transparent" />
+                    <s.icon className="absolute top-4 left-4 size-8 text-amber-500" strokeWidth={1.5} />
+                  </div>
+                  <div className="p-6">
+                    <h3 className="text-xl font-bold mb-1 uppercase tracking-tight">{s.title}</h3>
+                    <div className="text-amber-500 font-mono text-sm mb-3">{s.price}</div>
+                    <p className="text-zinc-400 text-sm">{s.desc}</p>
+                  </div>
                 </div>
               </Reveal>
             ))}

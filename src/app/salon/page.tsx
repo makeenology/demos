@@ -3,6 +3,7 @@ import { Reveal } from "@/components/Reveal";
 import { Marquee } from "@/components/Marquee";
 import { StickyCTA } from "@/components/StickyCTA";
 import { DemoBanner } from "@/components/DemoBanner";
+import { IMG } from "@/lib/images";
 import { Scissors, Sparkles, Heart, Star, MapPin, ArrowRight, Clock, MessageCircle } from "lucide-react";
 
 const BRAND = "Lume Salon & Spa";
@@ -77,10 +78,9 @@ export default function SalonDemo() {
           <Reveal delay={0.4} className="hidden md:block">
             <div className="relative aspect-[3/4] rounded-sm overflow-hidden">
               <div className="absolute inset-0 bg-gradient-to-br from-rose-200 via-stone-200 to-amber-100" />
-              <div className="absolute inset-0 bg-grid opacity-20" />
-              <div className="absolute inset-6 border border-rose-300/40 grid place-items-center">
-                <Scissors className="size-24 text-rose-400/50" strokeWidth={1} />
-              </div>
+              {/* eslint-disable-next-line @next/next/no-img-element */}
+              <img src={IMG.salon.portrait} alt="" className="absolute inset-0 w-full h-full object-cover" />
+              <div className="absolute inset-0 bg-gradient-to-t from-stone-50/40 via-transparent to-transparent" />
             </div>
           </Reveal>
         </div>
@@ -110,6 +110,20 @@ export default function SalonDemo() {
               </Reveal>
             ))}
           </div>
+        </div>
+      </section>
+
+      {/* GALLERY */}
+      <section className="py-12 px-6 lg:px-12">
+        <div className="max-w-6xl mx-auto grid grid-cols-2 md:grid-cols-4 gap-3">
+          {IMG.salon.gallery.map((src, i) => (
+            <Reveal key={i} delay={i * 0.06}>
+              <div className="aspect-[3/4] overflow-hidden rounded-sm">
+                {/* eslint-disable-next-line @next/next/no-img-element */}
+                <img src={src} alt="" className="w-full h-full object-cover hover:scale-105 transition duration-700" />
+              </div>
+            </Reveal>
+          ))}
         </div>
       </section>
 

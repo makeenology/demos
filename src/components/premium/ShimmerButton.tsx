@@ -25,10 +25,10 @@ export function ShimmerButton({
       )}
       style={{ background }}
     >
-      <span className="absolute inset-0 -translate-x-full animate-[shimmer_2.5s_infinite]"
-            style={{ background: `linear-gradient(110deg, transparent 30%, ${shimmer} 50%, transparent 70%)` }} />
+      <span className="pointer-events-none absolute inset-y-0 -inset-x-1/2 animate-[shimmer_2.8s_linear_infinite]"
+            style={{ background: `linear-gradient(110deg, transparent 40%, ${shimmer} 50%, transparent 60%)` }} />
       <span className="relative z-10 inline-flex items-center gap-2">{children}</span>
-      <style>{`@keyframes shimmer { 0%{transform:translateX(-100%)} 100%{transform:translateX(100%)} }`}</style>
+      <style>{`@keyframes shimmer { 0%{transform:translateX(-60%)} 100%{transform:translateX(60%)} }`}</style>
     </span>
   );
   if (href) return <a href={href}>{inner}</a>;

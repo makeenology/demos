@@ -7,33 +7,26 @@ import { Sparkles } from "@/components/premium/Sparkles";
 import { TextGenerate } from "@/components/premium/TextGenerate";
 import { BackgroundBeams } from "@/components/premium/BackgroundBeams";
 import { GradientText } from "@/components/premium/GradientText";
+import { IMG } from "@/lib/images";
 import { ShoppingBag, Heart, Star, Truck, ShieldCheck, RotateCcw, Search, User, ArrowRight, Sparkle, Tag } from "lucide-react";
 
 const BRAND = "ZAYTUNE";
 
 const products = [
-  { id: 1, name: "Linen Sand Kaftan", price: 1290, was: 1690, tag: "Bestseller",
-    grad: "from-amber-100 via-stone-200 to-rose-100" },
-  { id: 2, name: "Velvet Noir Abaya", price: 2450, was: 2950, tag: "New",
-    grad: "from-zinc-800 via-zinc-700 to-stone-600" },
-  { id: 3, name: "Silk Gold Hijab", price: 580, was: null, tag: "Limited",
-    grad: "from-amber-200 via-amber-300 to-yellow-200" },
-  { id: 4, name: "Pearl Drop Earrings", price: 890, was: null, tag: null,
-    grad: "from-rose-100 via-stone-100 to-rose-200" },
-  { id: 5, name: "Saffron Silk Scarf", price: 720, was: 920, tag: "Sale",
-    grad: "from-orange-200 via-rose-200 to-fuchsia-200" },
-  { id: 6, name: "Ivory Modesty Set", price: 1980, was: null, tag: "New",
-    grad: "from-stone-100 via-amber-50 to-stone-200" },
-  { id: 7, name: "Onyx Statement Cuff", price: 650, was: null, tag: null,
-    grad: "from-slate-700 via-slate-800 to-zinc-900" },
-  { id: 8, name: "Rose Gold Tasbih", price: 420, was: null, tag: "Popular",
-    grad: "from-rose-200 via-rose-300 to-amber-200" },
+  { id: 1, name: "Linen Sand Kaftan", price: 1290, was: 1690, tag: "Bestseller", img: IMG.shop.products[0] },
+  { id: 2, name: "Velvet Noir Abaya", price: 2450, was: 2950, tag: "New", img: IMG.shop.products[1] },
+  { id: 3, name: "Silk Gold Hijab", price: 580, was: null, tag: "Limited", img: IMG.shop.products[2] },
+  { id: 4, name: "Pearl Drop Earrings", price: 890, was: null, tag: null, img: IMG.shop.products[3] },
+  { id: 5, name: "Saffron Silk Scarf", price: 720, was: 920, tag: "Sale", img: IMG.shop.products[4] },
+  { id: 6, name: "Ivory Modesty Set", price: 1980, was: null, tag: "New", img: IMG.shop.products[5] },
+  { id: 7, name: "Onyx Statement Cuff", price: 650, was: null, tag: null, img: IMG.shop.products[6] },
+  { id: 8, name: "Rose Gold Tasbih", price: 420, was: null, tag: "Popular", img: IMG.shop.products[7] },
 ];
 
 const collections = [
-  { name: "Modest Couture", count: "48 pieces", grad: "from-stone-300 via-stone-200 to-rose-200" },
-  { name: "Heritage Jewelry", count: "32 pieces", grad: "from-amber-200 via-yellow-100 to-amber-300" },
-  { name: "Eid Collection", count: "26 pieces", grad: "from-emerald-300 via-emerald-200 to-amber-100" },
+  { name: "Modest Couture", count: "48 pieces", img: IMG.shop.collections[0] },
+  { name: "Heritage Jewelry", count: "32 pieces", img: IMG.shop.collections[1] },
+  { name: "Eid Collection", count: "26 pieces", img: IMG.shop.collections[2] },
 ];
 
 export default function ShopDemo() {
@@ -100,13 +93,9 @@ export default function ShopDemo() {
           </div>
           <Reveal delay={0.4} className="hidden lg:block">
             <TiltCard className="aspect-[4/5] rounded-3xl overflow-hidden relative group">
-              <div className="absolute inset-0 bg-gradient-to-br from-rose-300 via-amber-200 to-stone-300" />
-              <div className="absolute inset-0 bg-grid opacity-20" />
-              <div className="absolute inset-0 grid place-items-center">
-                <div className="size-40 rounded-full bg-white/30 backdrop-blur grid place-items-center">
-                  <span className="font-serif text-stone-900 text-6xl">Z</span>
-                </div>
-              </div>
+              {/* eslint-disable-next-line @next/next/no-img-element */}
+              <img src={IMG.shop.hero} alt="" className="absolute inset-0 w-full h-full object-cover" />
+              <div className="absolute inset-0 bg-gradient-to-t from-stone-900/70 via-transparent to-transparent" />
               <div className="absolute bottom-6 left-6 right-6 flex items-center justify-between bg-stone-900/80 backdrop-blur text-white p-4 rounded-2xl">
                 <div>
                   <div className="text-xs uppercase tracking-widest text-amber-300">Featured</div>
@@ -144,8 +133,9 @@ export default function ShopDemo() {
             {collections.map((c, i) => (
               <Reveal key={c.name} delay={i * 0.08}>
                 <TiltCard className="group aspect-[4/5] relative overflow-hidden rounded-2xl">
-                  <div className={`absolute inset-0 bg-gradient-to-br ${c.grad} group-hover:scale-105 transition-transform duration-700`} />
-                  <div className="absolute inset-0 bg-gradient-to-t from-stone-900/70 via-transparent to-transparent" />
+                  {/* eslint-disable-next-line @next/next/no-img-element */}
+                  <img src={c.img} alt={c.name} className="absolute inset-0 w-full h-full object-cover group-hover:scale-105 transition-transform duration-700" />
+                  <div className="absolute inset-0 bg-gradient-to-t from-stone-900/80 via-stone-900/20 to-transparent" />
                   <div className="absolute bottom-6 left-6 right-6 text-white">
                     <div className="text-xs uppercase tracking-[0.3em] text-amber-200 mb-2">{c.count}</div>
                     <div className="font-serif text-3xl font-light">{c.name}</div>
@@ -181,7 +171,9 @@ export default function ShopDemo() {
             {products.map((p, i) => (
               <Reveal key={p.id} delay={i * 0.04}>
                 <TiltCard className="group rounded-2xl overflow-hidden bg-stone-100 cursor-pointer">
-                  <div className={`relative aspect-square bg-gradient-to-br ${p.grad}`}>
+                  <div className="relative aspect-square overflow-hidden bg-stone-200">
+                    {/* eslint-disable-next-line @next/next/no-img-element */}
+                    <img src={p.img} alt={p.name} className="absolute inset-0 w-full h-full object-cover group-hover:scale-105 transition duration-500" />
                     {p.tag && (
                       <span className="absolute top-3 left-3 bg-stone-900 text-white text-[10px] uppercase tracking-widest px-2.5 py-1 rounded-full flex items-center gap-1">
                         <Tag className="size-2.5" /> {p.tag}
@@ -224,18 +216,16 @@ export default function ShopDemo() {
           </Reveal>
           <div className="grid md:grid-cols-3 gap-5">
             {[
-              { t: "Starter Shop", p: "R9,500", h: "R350/mo", f: ["Up to 25 products", "PayFast / Yoco checkout", "Single shipping zone", "Basic SEO + analytics"] },
-              { t: "Standard Shop", p: "R16,000", h: "R500/mo", f: ["100+ products", "Variations (size/colour)", "Filters, search, coupons", "Abandoned-cart emails", "Multiple payment methods"], featured: true },
-              { t: "Pro Shop", p: "R28,000", h: "R700/mo", f: ["Unlimited products", "Wishlist + reviews", "Subscriptions / loyalty", "Multi-currency", "Advanced filtering & merchandising"] },
+              { t: "Starter", f: ["Up to 25 products", "PayFast / Yoco checkout", "Single shipping zone", "Basic SEO + analytics"] },
+              { t: "Standard", f: ["100+ products", "Variations (size/colour)", "Filters, search, coupons", "Abandoned-cart emails", "Multiple payment methods"], featured: true },
+              { t: "Pro", f: ["Unlimited products", "Wishlist + reviews", "Subscriptions / loyalty", "Multi-currency", "Advanced filtering & merchandising"] },
             ].map((tier, i) => (
               <Reveal key={tier.t} delay={i * 0.08}>
                 <div className={`relative h-full rounded-3xl border p-8 ${tier.featured ? "bg-stone-900 text-white border-stone-900 scale-[1.02]" : "bg-white border-stone-200"}`}>
                   {tier.featured && (
                     <span className="absolute -top-3 left-1/2 -translate-x-1/2 bg-rose-700 text-white text-[10px] uppercase tracking-widest px-3 py-1 rounded-full">Most popular</span>
                   )}
-                  <h3 className="font-serif text-2xl mb-1">{tier.t}</h3>
-                  <div className="font-mono text-3xl mt-4">{tier.p}</div>
-                  <div className={`text-xs uppercase tracking-widest mb-6 ${tier.featured ? "text-stone-400" : "text-stone-500"}`}>+ {tier.h} hosting</div>
+                  <h3 className="font-serif text-2xl mb-6">{tier.t}</h3>
                   <ul className="space-y-2 text-sm">
                     {tier.f.map(x => <li key={x} className="flex gap-2"><Star className={`size-4 mt-0.5 shrink-0 ${tier.featured ? "text-rose-400" : "text-rose-700"}`} />{x}</li>)}
                   </ul>
