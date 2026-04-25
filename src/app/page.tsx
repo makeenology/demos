@@ -52,14 +52,10 @@ export default function Home() {
         </Reveal>
 
         <Reveal delay={0.8}>
-          <div className="mt-10 flex flex-col sm:flex-row gap-3 justify-center">
+          <div className="mt-10 flex justify-center">
             <ShimmerButton href="#demos" background="linear-gradient(110deg,#1e1b4b,#3730a3)">
               Browse demos <ArrowRight className="size-4" />
             </ShimmerButton>
-            <a href="https://makeenology.org" target="_blank" rel="noopener noreferrer"
-               className="inline-flex items-center justify-center gap-2 rounded-full border border-stone-700 px-7 py-3.5 text-sm hover:bg-stone-800 transition">
-              About Makeenology
-            </a>
           </div>
         </Reveal>
       </section>
